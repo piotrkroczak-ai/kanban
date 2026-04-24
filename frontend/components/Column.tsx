@@ -53,16 +53,11 @@ export default function Column({ column, onMoveCard, onAddCard, onDeleteCard, on
   return (
     <div
       ref={(node) => { drop(node as any); }}
-      style={{
-        width: '300px',
-        minHeight: '400px',
-        border: '1px solid #ccc',
-        padding: '10px',
-        backgroundColor: isOver ? 'var(--column-hover-bg)' : 'var(--column-bg)'
-      }}
+      className="column"
+      style={{ backgroundColor: isOver ? 'var(--column-hover-bg)' : undefined }}
     >
-      <h2 onClick={handleRename} style={{ cursor: 'pointer', color: 'var(--navy-dark)' }}>{column.name}</h2>
-      <button onClick={() => setShowForm(true)} style={{ backgroundColor: 'var(--purple-secondary)', color: 'white', border: 'none', padding: '6px 10px', marginBottom: '10px' }}>Add Card</button>
+      <h2 onClick={handleRename} className="col-title" style={{ cursor: 'pointer' }}>{column.name}</h2>
+      <button onClick={() => setShowForm(true)} className="btn btn-secondary" style={{ marginBottom: '10px' }}>Add Card</button>
 
       {showForm && (
         <form onSubmit={handleSubmit} style={{ marginBottom: '10px' }}>
@@ -70,18 +65,20 @@ export default function Column({ column, onMoveCard, onAddCard, onDeleteCard, on
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             placeholder="Card title"
-            style={{ width: '100%', padding: '6px', marginBottom: '6px' }}
+            className="input"
+            style={{ marginBottom: '6px' }}
             autoFocus
           />
           <textarea
             value={details}
             onChange={(e) => setDetails(e.target.value)}
             placeholder="Details (optional)"
-            style={{ width: '100%', padding: '6px', marginBottom: '6px' }}
+            className="input"
+            style={{ marginBottom: '6px' }}
           />
           <div style={{ display: 'flex', gap: '8px' }}>
-            <button type="submit" style={{ backgroundColor: 'var(--blue-primary)', color: 'white', border: 'none', padding: '6px 10px' }}>Add</button>
-            <button type="button" onClick={() => setShowForm(false)} style={{ padding: '6px 10px' }}>Cancel</button>
+            <button type="submit" className="btn btn-primary">Add</button>
+            <button type="button" onClick={() => setShowForm(false)} className="btn btn-ghost">Cancel</button>
           </div>
         </form>
       )}

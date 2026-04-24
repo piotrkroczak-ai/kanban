@@ -31,3 +31,102 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Modern UI styles */
+.app-container {
+  max-width: 1200px;
+  margin: 24px auto;
+  padding: 16px;
+}
+
+.app-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 18px;
+  text-align: center;
+}
+
+.project-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--navy-dark);
+  margin: 0;
+}
+
+.project-desc {
+  font-size: 14px;
+  color: var(--gray-text);
+  margin: 0;
+  max-width: 900px;
+}
+
+.board {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  overflow-x: auto;
+  align-items: flex-start;
+}
+
+.column {
+  width: 300px;
+  min-height: 420px;
+  border-radius: 12px;
+  padding: 12px;
+  background: var(--column-bg);
+  box-shadow: 0 6px 18px rgba(2,9,23,0.06);
+  border: 1px solid rgba(2,9,23,0.04);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.column:hover {
+  transform: translateY(-4px);
+}
+
+.column .col-title {
+  font-size: 16px;
+  margin: 0 0 8px 0;
+  color: var(--navy-dark);
+}
+
+.card {
+  border-radius: 8px;
+  padding: 12px;
+  background: var(--card-bg);
+  box-shadow: 0 4px 12px rgba(2,9,23,0.06);
+  border: 1px solid rgba(2,9,23,0.04);
+  margin-bottom: 10px;
+}
+
+.card h3 {
+  margin: 0 0 6px 0;
+  color: var(--navy-dark);
+}
+
+.card p {
+  margin: 0;
+  color: var(--gray-text);
+}
+
+.btn {
+  padding: 8px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 600;
+}
+
+.btn-primary { background: var(--blue-primary); color: white; border: none; }
+.btn-secondary { background: var(--purple-secondary); color: white; border: none; }
+.btn-accent { background: var(--accent-yellow); color: #032147; border: none; }
+.btn-ghost { background: transparent; border: 1px solid rgba(0,0,0,0.06); color: var(--navy-dark); }
+
+.input, textarea { width: 100%; padding: 8px 10px; border-radius: 8px; border: 1px solid #e6e6e6; }
+
+@media (max-width: 768px) {
+  .board { padding: 12px; gap: 12px; }
+  .column { width: 260px; }
+  .project-title { font-size: 22px; }
+}

@@ -10,6 +10,10 @@ import { Board as BoardType, Card } from './types';
 export default function Home() {
   const [board, setBoard] = useState<BoardType>(dummyBoard);
   const [editingCardId, setEditingCardId] = useState<string | null>(null);
+  const [projectTitle, setProjectTitle] = useState<string>('Project');
+  const [projectDesc, setProjectDesc] = useState<string>('A simple Kanban board for your project.');
+  const [editingTitle, setEditingTitle] = useState<boolean>(false);
+  const [editingDesc, setEditingDesc] = useState<boolean>(false);
 
   const handleMoveCard = (cardId: string, fromColumnId: string, toColumnId: string) => {
     setBoard(prev => {
@@ -72,8 +76,39 @@ export default function Home() {
 
   return (
     <DndProvider backend={HTML5Backend}>
-      <div style={{ fontFamily: 'Arial, sans-serif' }}>
-        <h1 style={{ textAlign: 'center', color: 'var(--navy-dark)' }}>Kanban Board</h1>
+      <div className="app-container">
+        <header className="app-header">
+          {editingTitle ? (
+            <div style={{ width: '100%', maxWidth: 900 }}>
+              <input className="input" value={projectTitle} onChange={(e) => setProjectTitle(e.target.value)} />
+              <div style={{ display: 'flex', gap: 8, marginTop: 8 }}>
+                <button className="btn btn-primary" onClick={() => setEditingTitle(false)}>Save</button>
+                <button className="btn btn-ghost" onClick={() => setEditingTitle(false)}>Cancel</button>
+              </div>
+            </div>
+          ) : (
+            <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+              <h1 className="project-title">{projectTitle}</h1>
+              <button className="btn btn-ghost" onClick={() => setEditingTitle(true)}>Edit</button>
+            </div>
+          )}
+
+          {editingDesc ? (
+            <div style={{ width: '100%', maxWidth: 900 }}>
+              <textarea className="input" rows={2} value={projectDesc} onChange={(e) => setProjectDesc(e.target.value)} />
+              <div style={{ display: 'flex', gap: 8, marginTop: 8 }}>
+                <button className="btn btn-primary" onClick={() => setEditingDesc(false)}>Save</button>
+                <button className="btn btn-ghost" onClick={() => setEditingDesc(false)}>Cancel</button>
+              </div>
+            </div>
+          ) : (
+            <div style={{ display: 'flex', gap: 8, alignItems: 'center', flexDirection: 'column' }}>
+              <p className="project-desc">{projectDesc}</p>
+              <button className="btn btn-ghost" onClick={() => setEditingDesc(true)}>Edit description</button>
+            </div>
+          )}
+        </header>
+
         <Board
           board={board}
           onMoveCard={handleMoveCard}

@@ -14,7 +14,7 @@ interface BoardProps {
 
 export default function Board({ board, onMoveCard, onAddCard, onDeleteCard, onRenameColumn, onUpdateCard, editingCardId, onClearEditing }: BoardProps) {
   return (
-    <div style={{ display: 'flex', gap: '20px', padding: '20px', overflowX: 'auto' }}>
+    <div className="board">
       {board.columns.map(column => (
         <Column
           key={column.id}

@@ -52,39 +52,35 @@ export default function Card({ card, columnId, onDelete, onUpdate, editingCardId
       ref={(node) => {
         drag(node as any);
       }}
-      style={{
-        border: '1px solid #ddd',
-        padding: '10px',
-        margin: '5px 0',
-        backgroundColor: 'var(--card-bg)',
-        opacity: isDragging ? 0.5 : 1,
-        cursor: 'move'
-      }}
+      className="card"
+      style={{ opacity: isDragging ? 0.5 : 1, cursor: 'move' }}
     >
       {isEditing ? (
         <div>
           <input
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            style={{ width: '100%', marginBottom: '6px', padding: '6px' }}
+            className="input"
+            style={{ marginBottom: '6px' }}
           />
           <textarea
             value={details}
             onChange={(e) => setDetails(e.target.value)}
-            style={{ width: '100%', marginBottom: '6px', padding: '6px' }}
+            className="input"
+            style={{ marginBottom: '6px' }}
           />
           <div style={{ display: 'flex', gap: '8px' }}>
-            <button onClick={save} style={{ backgroundColor: 'var(--purple-secondary)', color: 'white', border: 'none', padding: '6px 10px' }}>Save</button>
-            <button onClick={cancel} style={{ padding: '6px 10px' }}>Cancel</button>
+            <button onClick={save} className="btn btn-secondary">Save</button>
+            <button onClick={cancel} className="btn btn-ghost">Cancel</button>
           </div>
         </div>
       ) : (
         <div>
-          <h3 style={{ color: 'var(--navy-dark)', margin: '0 0 6px 0' }}>{card.title}</h3>
-          <p style={{ color: 'var(--gray-text)', margin: 0 }}>{card.details}</p>
+          <h3>{card.title}</h3>
+          <p>{card.details}</p>
           <div style={{ display: 'flex', gap: '8px', marginTop: '8px' }}>
-            <button onClick={() => setIsEditing(true)} style={{ background: 'var(--accent-yellow)', border: 'none', padding: '6px 8px' }}>Edit</button>
-            <button onClick={onDelete} style={{ backgroundColor: 'var(--blue-primary)', color: 'white', border: 'none', padding: '6px 8px' }}>Delete</button>
+            <button onClick={() => setIsEditing(true)} className="btn btn-accent">Edit</button>
+            <button onClick={onDelete} className="btn btn-primary">Delete</button>
           </div>
         </div>
       )}
